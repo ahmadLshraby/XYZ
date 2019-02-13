@@ -26,6 +26,20 @@ class ViewController: UIViewController {
     
     func updateLabels(data: CMAccelerometerData?, error: Error?) {
         guard let accelerometerData = data else { return }
+        // limit the decimal after .
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = 1
+        formatter.maximumFractionDigits = 1
+        // get the data from CMAccelerometerData and convert it to string to be able to disply it
+        let x = formatter.string(for: accelerometerData.acceleration.x)!
+        let y = formatter.string(for: accelerometerData.acceleration.y)!
+        let z = formatter.string(for: accelerometerData.acceleration.z)!
+        
+        print(x, y, z)
+        //put these values to our variables labels
+        xLbl.text = "X: \(x)"
+        yLbl.text = "Y: \(y)"
+        zLbl.text = "Z: \(z)"
         
     }
 
